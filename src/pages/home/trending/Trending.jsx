@@ -1,15 +1,25 @@
-import React from 'react'
-import ContentWrapper from '../../../components/contentWrapper/ContentWrapper'
-
+import React, { useState } from "react";
+import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
+import SwitchTabs from "../../../components/switchTabs/SwitchTabs";
+import useFetch from "../../../hooks/useFetch";
 
 const Trending = () => {
-  return (
-    <div className='carouselSection'>
-        <ContentWrapper>
-            <span className="carouselTitle">Popular</span>
-        </ContentWrapper>
-    </div>
-  )
-}
+    const [endpoint, setEndpoint] = useState("day");
+    const { data, loading } = useFetch(`/trending/movie/${endpoint}`);
 
-export default Trending
+    const onTabChange = (tab) => {
+        setEndpoint(tab === "Day" ? "day" : "week");
+    };
+
+    return (
+        <div className="carouselSection">
+            <ContentWrapper>
+                <span className="carouselTitle">Popular</span>
+                <SwitchTabs data={["Dia", "Semana"]} onTabChange={onTabChange} />
+            </ContentWrapper>
+
+        </div>
+    );
+};
+
+export default Trending;
