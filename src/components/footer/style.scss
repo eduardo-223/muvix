@@ -1,5 +1,4 @@
 @import "../../mixins.scss";
-
 .footer {
     background-color: var(--black3);
     padding: 50px 0;
@@ -60,12 +59,7 @@
             justify-content: center;
             cursor: pointer;
             transition: all ease 0.3s;
-            &:hover ;
-            -webkit-transition: all ease 0.3s;
-            -moz-transition: all ease 0.3s;
-            -ms-transition: all ease 0.3s;
-            -o-transition: all ease 0.3s;
-{
+            &:hover {
                 box-shadow: 0 0 0.625em var(--pink);
                 color: var(--pink);
             }
