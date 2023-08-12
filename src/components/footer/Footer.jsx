@@ -15,9 +15,9 @@ const Footer = () => {
         <footer className="footer">
             <ContentWrapper>
                 <ul className="menuItems">
-                    <li className="menuItem">Terms Of Use</li>
-                    <li className="menuItem">Privacy-Policy</li>
-                    <li className="menuItem">About</li>
+                    <li className="menuItem">Termos de Uso</li>
+                    <li className="menuItem">Politica de privacidade</li>
+                    <li className="menuItem">Sobre</li>
                     <li className="menuItem">Blog</li>
                     <li className="menuItem">FAQ</li>
                 </ul>
