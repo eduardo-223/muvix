@@ -1873,13 +1873,6 @@ once@^1.3.0:
   dependencies:
     wrappy "1"
 
-openmobile@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/openmobile/-/openmobile-1.0.6.tgz#df32956ae131a30e26b355c7268cccdf990bcb14"
-  integrity sha512-G5UV6+uTb8YqVDWFr11BUqL/HE3gxd6GL9bodDgBP5qGv4fInc8Mi3G7zvd7aJqcXv9T23a2/qo102k4ue3N7A==
-  dependencies:
-    qrcode-terminal "^0.12.0"
-
 optionator@^0.9.3:
   version "0.9.3"
   resolved "https://registry.yarnpkg.com/optionator/-/optionator-0.9.3.tgz#007397d44ed1872fdc6ed31360190f81814e2c64"
@@ -1990,11 +1983,6 @@ punycode@^2.1.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.3.0.tgz#f67fa67c94da8f4d0cfff981aee4118064199b8f"
   integrity sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==
-
-qrcode-terminal@^0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/qrcode-terminal/-/qrcode-terminal-0.12.0.tgz#bb5b699ef7f9f0505092a3748be4464fe71b5819"
-  integrity sha512-EXtzRZmC+YGmGlDFbXKxQiMZNwCLEO6BANKXG4iCtSIM0yqc/pappSx3RIKr4r0uh5JsBckOXeKrB3Iz7mdQpQ==
 
 queue-microtask@^1.2.2:
   version "1.2.3"
