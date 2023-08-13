@@ -90,7 +90,7 @@ const Header = () => {
               navigationHandler("tv");
             }}
           >
-            Programas
+            Series
           </li>
           <li className="menuItem">
             <HiOutlineSearch onClick={openSearch} />
