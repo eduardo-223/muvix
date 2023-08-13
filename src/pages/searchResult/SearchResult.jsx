@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { fetchDataFromApi } from './../../utils/api';
-import MovieCard from "../../components/movieCard/MovieCard";
+//import MovieCard from "../../components/movieCard/MovieCard";
 import Spinner from "../../components/spinner/Spinner"
-import noResults from "../../assets/no-results.png"
+//import noResults from "../../assets/no-results.png"
 import ContentWrapper from './../../components/contentWrapper/ContentWrapper';
 import "./style.scss";
 
@@ -43,7 +43,22 @@ function SearchResult() {
 
   return (
     <div className='searchResultsPage'>
-
+      {loading && <Spinner initial={true}/>}
+      {!loading && (
+        <ContentWrapper>
+          {data?.results.length > 0 ?(
+            <>
+                <div className="pageTitle">
+                  {`Pesquisa ${data.results > 1 ? "resultados" : "resultado"} da '${query}'`}
+                </div>
+            </>
+          ):(
+            <span className="resultNoFound">
+              Desculpe, nenhum resultado encontrado!
+            </span>
+          )}
+        </ContentWrapper>
+      )}
     </div>
   )
 }
