@@ -9,9 +9,13 @@ import CircleRating from "../../../components/circleRating/CircleRating";
 import Img from "../../../components/lazyLoadImage/Img.jsx";
 import PosterFallback from "../../../assets/no-poster.png";
 import { PlayIcon } from "./../PlayBtn";
+import VideoPopup from "../../../components/videoPopup/VideoPopup";
 import "./style.scss";
 
 const DetailsBanner = ({ video, crew }) => {
+  const [show, setShow] = useState(false);
+  const [videoId, setVideoId] = useState(null);
+
   const { mediaType, id } = useParams();
   const { data, loading } = useFetch(`/${mediaType}/${id}`);
 
@@ -19,8 +23,10 @@ const DetailsBanner = ({ video, crew }) => {
 
   const _genres = data?.genres?.map((g) => g.id);
 
-  const director = crew?.filter((f) => f.job === "Director")
-  const writer = crew?.filter((f)=> f.job === "Screenplay" || f.job === "Story" || f.job === "Writer")
+  const director = crew?.filter((f) => f.job === "Director");
+  const writer = crew?.filter(
+    (f) => f.job === "Screenplay" || f.job === "Story" || f.job === "Writer"
+  );
 
   const toHoursAndMinutes = (totalMinutes) => {
     const hours = Math.floor(totalMinutes / 60);
@@ -61,7 +67,13 @@ const DetailsBanner = ({ video, crew }) => {
 
                     <div className="row">
                       <CircleRating rating={data.vote_average.toFixed(1)} />
-                      <div className="playbtn" onClick={() => {}}>
+                      <div
+                        className="playbtn"
+                        onClick={() => {
+                          setShow(true);
+                          setVideoId(video.key);
+                        }}
+                      >
                         <PlayIcon />
                         <span className="text">Assistir Trailer</span>
                       </div>
@@ -73,67 +85,79 @@ const DetailsBanner = ({ video, crew }) => {
                     </div>
 
                     <div className="info">
-                        {data.status && (
-                            <div className="infoItem">
-                                <span className="text bold">Status:{" "}</span>
-                                <span className="text">{data.status}</span>
-                            </div>
-                        )}
-                             {data.release_date && (
-                            <div className="infoItem">
-                                <span className="text bold">Data de Lançamento:{" "}</span>
-                                <span className="text">{dayjs(data.release_date).format("D MMM, YYYY")}</span>
-                            </div>
-                        )}
-                        {data.runtime && (
-                            <div className="infoItem">
-                                <span className="text bold">Tempo:{" "}</span>
-                                <span className="text">{toHoursAndMinutes(data.runtime)}</span>
-                            </div>
-                        )}
+                      {data.status && (
+                        <div className="infoItem">
+                          <span className="text bold">Status: </span>
+                          <span className="text">{data.status}</span>
+                        </div>
+                      )}
+                      {data.release_date && (
+                        <div className="infoItem">
+                          <span className="text bold">
+                            Data de Lançamento:{" "}
+                          </span>
+                          <span className="text">
+                            {dayjs(data.release_date).format("D MMM, YYYY")}
+                          </span>
+                        </div>
+                      )}
+                      {data.runtime && (
+                        <div className="infoItem">
+                          <span className="text bold">Tempo: </span>
+                          <span className="text">
+                            {toHoursAndMinutes(data.runtime)}
+                          </span>
+                        </div>
+                      )}
                     </div>
 
-                    {director?.length > 0&&(
-                        <div className="info">
-                            <span className="text bold">Diretor:{" "}</span>
-                            <span className="text">
-                                {director?.map((directore, index) =>(
-                                    <span key={index}>
-                                       {directore.name} 
-                                       {director.length -1 !== index && ", "}
-                                    </span>
-                                ))}
+                    {director?.length > 0 && (
+                      <div className="info">
+                        <span className="text bold">Diretor: </span>
+                        <span className="text">
+                          {director?.map((directore, index) => (
+                            <span key={index}>
+                              {directore.name}
+                              {director.length - 1 !== index && ", "}
                             </span>
-                        </div>
+                          ))}
+                        </span>
+                      </div>
                     )}
-                     {writer?.length > 0&&(
-                        <div className="info">
-                            <span className="text bold">Escritor:{" "}</span>
-                            <span className="text">
-                                {writer?.map((write, index) =>(
-                                    <span key={index}>
-                                       {write.name} 
-                                       {writer.length -1 !== index && ", "}
-                                    </span>
-                                ))}
+                    {writer?.length > 0 && (
+                      <div className="info">
+                        <span className="text bold">Escritor: </span>
+                        <span className="text">
+                          {writer?.map((write, index) => (
+                            <span key={index}>
+                              {write.name}
+                              {writer.length - 1 !== index && ", "}
                             </span>
-                        </div>
+                          ))}
+                        </span>
+                      </div>
                     )}
-                     {data?.created_by?.length > 0&&(
-                        <div className="info">
-                            <span className="text bold">Criador:{" "}</span>
-                            <span className="text">
-                                {data?.created_by?.map((create, index) =>(
-                                    <span key={index}>
-                                       {create.name} 
-                                       {data?.created_by.length -1 !== index && ", "}
-                                    </span>
-                                ))}
+                    {data?.created_by?.length > 0 && (
+                      <div className="info">
+                        <span className="text bold">Criador: </span>
+                        <span className="text">
+                          {data?.created_by?.map((create, index) => (
+                            <span key={index}>
+                              {create.name}
+                              {data?.created_by.length - 1 !== index && ", "}
                             </span>
-                        </div>
+                          ))}
+                        </span>
+                      </div>
                     )}
                   </div>
                 </div>
+                <VideoPopup
+                  show={show}
+                  setShow={setShow}
+                  videoId={videoId}
+                  setVideoId={setVideoId}
+                />
               </ContentWrapper>
             </React.Fragment>
           )}
