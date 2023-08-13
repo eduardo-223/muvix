@@ -13,7 +13,7 @@ import CircleRating from "./../circleRating/CircleRating";
 import Genres from "../genres/Genres";
 import "./style.scss";
 
-function Carousel({ data, loading }) {
+function Carousel({ data, loading,endpoint, title}) {
   const carouselContainer = useRef();
   const { url } = useSelector((state) => state.home);
   const navigate = useNavigate();
@@ -44,6 +44,7 @@ function Carousel({ data, loading }) {
   return (
     <div className="carousel">
       <ContentWrapper>
+        {title && <div className="carouselTitle">{title}</div>}
         <BsFillArrowLeftCircleFill
           className="carouselLeftNav arrow"
           onClick={() => navigation("left")}
@@ -63,7 +64,7 @@ function Carousel({ data, loading }) {
                 <div
                   key={item.id}
                   className="carouselItem"
-                  onClick={() => navigate(`/${item.media_type}/${item.id}`)}
+                  onClick={() => navigate(`/${item.media_type || endpoint}/${item.id}`)}
                 >
                   <div className="posterBlock">
                     <Img src={posterUrl} alt="" />
